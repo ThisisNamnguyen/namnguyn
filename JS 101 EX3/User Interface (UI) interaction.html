@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/JS 101 EX3/UI.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div class="head-form">
+            <h1>MATH.IO</h1>
+        </div>
+
+        <div class="body-form"> 
+            <img class="image-hat" src="/JS 101 EX3/mu.jpg" alt="">
+
+            <img class="image-math" src="/JS 101 EX3/math.png" alt="">
+
+            <div class="side-left"></div>
+
+            <div class="container">
+                <p class="main-content">Calculate the perimeter and area of a square</p>
+                    <div class="sub-content" style="background-color: rgb(193, 236, 236);">
+                        <p><strong>A square</strong> is a equilateral quadrilateral with 4 equal sides and 4 equal angles. </p>
+                        <p><strong>A square</strong>  has 4 right angles, a diagonal perpendicular at the midpoint and 2 pairs of opposite sides parallel to each other.</p>
+                        <p>Example: </p>
+                        <p style="margin-left: 170px;">a</p>
+                        <svg height = "160px">
+                            <rect x="100" y="5" width="150" height="150" fill="none" stroke="black" />
+                        </svg>
+                        <p><strong>The perimeter of a square</strong> is calculated as the sum of the lengths of the lines surrounding the figure, which is also the line that encloses the entire area.</p>
+                        <p><strong>The area of ​​a square</strong> is measured by the size of its surface, which is the visible portion of the square.</p> <br>
+                        <p>Enter the length of the edge of the square: </p>
+                        <input type="text" placeholder="Enter a number" id="input-edge">
+                        <button type="button" onclick="calSquare()">Solve</button> 
+                        <div class="result-square"></div>
+                    </div>                
+            </div>
+            <div class="container">
+                <p class="main-content" style="max-width: 525px;" >Calculate the perimeter and area of a circle</p>
+                <div class="sub-content" style="background-color: rgb(247, 198, 107);">
+                    <p><strong>A circle</strong> is a shape consisting of points on and inside a circle.</p>
+                    <p><strong>The center, radius, and circumference of a circle</strong> are the center and radius of the circle surrounding it.</p>
+                    <p>Example: </p>
+                    <div class="illustrative-images">
+                        <p style="position: absolute; top: 55px; left: 90px;">r</p>
+                        <svg height = "160px">
+                            <path d ="M 50 80 A 50 50 0 1 1 200 80 A 50 50 0 1 1 50 80 L 125 80" fill="none" stroke="black" />
+                        </svg>
+                    </div>
+                    <p><strong>The circumference of a circle</strong> is the boundary line of the circle.</p>
+                    <p><strong>The area of ​​a circle</strong> is calculated as how large the circle occupies on a given surface.</p> <br>
+                    <p>Enter the radius of the circle: </p>
+                    <input type="text" placeholder="Enter a number" id="input-radius">
+                    <button type="button" onclick="calCircle()">Solve</button>
+                    <div class="result-circle"></div> 
+                </div>                
+            </div>
+            <div class="container">
+                <p class="main-content" style="max-width: 625px;" >Calculate the perimeter and area of a triangle</p>
+                <div class="sub-content" style="background-color: rgb(247, 139, 139);">
+                    <p><strong>A triangle</strong> is a basic type of geometry: a flat two-dimensional figure whose three vertices are three noncollinear points and whose three sides are three line segments connecting the vertices.</p>
+                    <p><strong>A triangle</strong> is the polygon with the least number of sides (3 sides). Triangle has always been a single polygon and always a convex polygon (the angle is always smaller in 180 ° ).</p>
+                    <p>Example: </p>
+                    <div class="illustrative-images">
+                        <p style="position: absolute; top: 24px; left: 120px;">a</p>
+                        <p style="position: absolute; top: 40px; left: 210px;">b</p>
+                        <p style="position: absolute; top: 80px; left: 100px;">c</p>
+                        <svg height = "110px">
+                            <path d = "M 0 100 L 250 0 L 150 100 L 0 100 " fill="none" stroke="black"/>
+                        </svg>                
+                    </div>
+                    <p>Enter 3 lengths of the edge of the triangle: </p>
+                    a =<input type="text" placeholder="Enter a number" id="edge-a"> <br>
+                    b =<input type="text" placeholder="Enter a number" id="edge-b"> <br>
+                    c =<input type="text" placeholder="Enter a number" id="edge-c"> <br>
+                    <button type="button" onclick="calTriangle()">Solve</button> 
+                    <div class="result-triangle"></div>
+                </div>                
+            </div>
+            <div class="container">
+                <p class="main-content" style="max-width: 725px;" >Solve quadratic equation</p>
+                <div class="sub-content" style="background-color: rgb(189, 243, 136);">                
+                    <p>A quadratic equation is an equation of the form: ax<sup>2</sup> + bx + c = 0 (a ≠ 0)</p> <br>
+                    <p>Enter the variables of quadratic equation: </p>
+                    a =<input type="text" placeholder="Enter a" id="var-a"> <br>
+                    b =<input type="text" placeholder="Enter b" id="var-b"> <br>
+                    c =<input type="text" placeholder="Enter c" id="var-c"> <br>
+                    <button type="button" onclick="SolveEquation()">Solve</button>
+                    <div class="the-quadratic-equation"></div> 
+                    <div class="result-equation"></div>
+                </div>                
+            </div>
+
+            <div class="side-right"></div>
+
+            <div class="footer-form">
+                About: <a href="#">arsgdsafg@gmail.com</a>
+            </div>
+          
+        </div>
+    </form>
+    <script>
+        var selects = document.querySelectorAll('.main-content');
+        var subCtns = document.querySelectorAll('.sub-content');
+        var root = document.querySelector(':root');
+
+        for (const [i, select] of selects.entries()) {
+            select.addEventListener('click', function(){
+                if (subCtns[i].style.display == 'block') {
+                    subCtns[i].style.display = 'none';
+                } else {
+                    subCtns[i].style.display = 'block';
+                }
+                root.style.setProperty('--animation-name', 'slideOut ease 0.8s');
+                root.style.setProperty('--animation-fill-mode', 'both');
+            })
+        }
+
+        function calSquare() {
+            var edgeSquare = parseFloat(document.querySelector('#input-edge').value);
+            
+            if (edgeSquare > 0) {               
+                document.querySelector(".result-square").innerHTML =  `Perimeter of square is ${(edgeSquare * 4).toFixed(2)}
+                <br/> Area of square is ${(edgeSquare * edgeSquare).toFixed(2)}`;       
+            } else {
+                alert("Invalid! Please try again");
+            }
+        }
+
+
+        function calCircle() {
+            var radius = parseFloat(document.querySelector('#input-radius').value);
+            if (radius > 0) {               
+                document.querySelector(".result-circle").innerHTML =  `Perimeter of circle is ${(2 *3.14 *radius).toFixed(2)}
+                <br/> Area of circle is ${(3.14 * radius * radius).toFixed(2)}`;      
+            } else {
+                alert("Invalid! Please try again");
+            }
+        }
+
+        function calTriangle(){
+            var edgeA = parseFloat(document.querySelector('#edge-a').value);
+            var edgeB = parseFloat(document.querySelector('#edge-b').value);
+            var edgeC = parseFloat(document.querySelector('#edge-c').value);
+
+            if (edgeA > 0 && edgeB > 0 && edgeC > 0) {
+                if ((edgeA + edgeB > edgeC) && (edgeA + edgeC > edgeB) && (edgeB + edgeC > edgeA)) {
+                    var trianglePe = edgeA + edgeB + edgeC;
+                    var halfPe = trianglePe / 2; 
+                    var triangleArea = Math.sqrt(halfPe*(halfPe - edgeA)*(halfPe - edgeB)*(halfPe - edgeC))
+                    document.querySelector(".result-triangle").innerHTML =  `Perimeter of triangle is ${trianglePe.toFixed(2)}
+                    <br/> Area of triangle is ${triangleArea.toFixed(2)}`;      
+                } else {
+                    alert("Invalid! Please try again");
+                }
+            } else {
+                alert("Invalid! Please try again");
+            }            
+        }
+
+        function SolveEquation() {
+            var a = parseFloat(document.querySelector('#var-a').value);
+            var b = parseFloat(document.querySelector('#var-b').value);
+            var c = parseFloat(document.querySelector('#var-c').value);
+
+            document.querySelector(".the-quadratic-equation").innerHTML = `The equation: ${a}x<sup>2</sup> + ${b}x + ${c} = 0`;
+
+            if(a == 0) {
+                alert("Invalid!");
+            } else {
+                var delta = b * b - 4 * a *c;
+                if (delta < 0) {
+                    document.querySelector(".result-equation").innerHTML = `The equation has no solution.`;
+                } else if (delta == 0) {
+                    var x = -b / (2 * a);
+                    document.querySelector(".result-equation").innerHTML = `The equation has a double solution x = ${x.toFixed(2)}`;
+                } else {
+                    var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                    var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                    document.querySelector(".result-equation").innerHTML = `The equation exists 2 solutions:
+                    <br> x1 = ${x1.toFixed(4)}
+                    <br> x2 = ${x2.toFixed(4)}`;
+                }
+            }
+        }
+            
+    </script>
+</body>
+</html>

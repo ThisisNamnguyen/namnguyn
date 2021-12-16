@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: justify;
+    word-wrap: break-word;
+    font-family:  Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --animation-name: none;
+    --animation-fill-mode: none;
+}
+
+input {
+    margin: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.head-form {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+}
+
+.head-form h1{
+    font-size: 30px;
+    color: aqua;
+}
+
+.body-form {
+    position: relative;
+}
+
+.image-hat {
+    width: 200px;
+    height: 180px;
+    margin-left: 250px;
+}
+
+.image-math {
+    position: absolute;
+    width: 300px;
+    height: 321px;
+    top: 90px;
+    right: 197px;
+}
+
+.menu {
+    width: 120px;
+    height: 100%;
+    background-color: rgb(167, 167, 167);
+    box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.main-content:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.sub-content {
+    display: none;
+    margin: 20px 0 20px 50px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid;
+    box-shadow: 2px 2px 3px 3px rgb(0 0 0 / 50%);
+    max-width: 1000px;
+    animation: var(--animation-name);
+    animation-fill-mode: var(--animation-fill-mode);
+}
+
+.container {
+    margin-left: 130px;
+}
+
+.main-content {
+    max-width: 450px;
+    padding: 20px;
+    margin: 10px 0 10px;
+    font-size: 20px;
+    background-color: rgb(238, 180, 225); 
+    box-shadow: 6px 6px 3px 3px rgb(0 0 0 / 50%);
+    text-align: center;
+}
+
+.side-right, .side-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    height: 100%;
+    background-color: rgb(221, 221, 221);
+    z-index: 1;
+}
+
+.side-left {
+    left: 0;
+    box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.side-right {
+    right: 0;
+}
+
+.illustrative-images {
+    position: relative;
+}
+
+.footer-form {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #aaa;
+    margin-top: 53px;
+}
+
+.footer-form a{
+    color: black;
+    text-decoration: none;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .image-hat {
+        margin-left: 110px;
+    }
+
+    .main-content {
+        margin-right: 20px;
+        margin-left: 0;
+    }
+
+    .sub-content {
+        margin-right: 15px;
+        margin-left: 0;
+    }
+    
+    button {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .side-left, .side-right, .image-math {
+        display: none;
+    }
+
+    .image-hat {
+        margin-left: calc((100% - 200px)/2);
+    }
+
+    .container {
+        margin-left: 20px;
+    }
+ 
+    .sub-content {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/JS 101 EX5/Analog clock.css">
+    <title>Document</title>
+</head>
+<body onload="digitalClock()">
+    <div class="Clock" id='clock'>
+        <div class="weekday-month">
+            <div id="day-month"></div>
+        </div>
+        
+        <div class="hour">
+            <div id="hr"></div>
+        </div>
+        <div class="min">
+            <div id="mn"></div>
+        </div>
+        <div class="sec">
+            <div id="sc"></div> 
+        </div>
+    </div>
+
+    <div class="digital-clock" ></div>
+</body>
+<script>
+    var changeColor = document.getElementById('day-month');
+    var clockFace = document.getElementById('clock');
+
+    function timeFormat(i) {
+        if(i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function check(i) {
+        if(i >= 5 && i <= 17) {
+            clockFace.style.backgroundColor = "white";
+            changeColor.style.color = "black";
+        } else {
+            clockFace.style.backgroundColor = "black";
+            changeColor.style.color = "white";
+
+        }
+    }
+
+    function digitalClock(){
+        var Today = new Date();
+        var hour = Today.getHours();
+        var min = Today.getMinutes();
+        var sec = Today.getSeconds();
+        var month = Today.getMonth() + 1;
+
+        const  WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+        let weekDay = WEEK_DAYS[Today.getDay()];
+        
+        var t = check(hour);
+        
+        document.getElementById('day-month').innerHTML = `${weekDay} / ${month}`;
+        document.querySelector('.digital-clock').innerHTML = `${timeFormat(hour)}:${timeFormat(min)}:${timeFormat(sec)}`;
+        
+        setTimeout(() => {
+            digitalClock();
+        }, 500);
+    }
+
+    const deg = 6;
+    const hr = document.querySelector('#hr');
+    const mn = document.querySelector('#mn');
+    const sc = document.querySelector('#sc');
+
+    setInterval(() => {
+        var d = new Date();
+        var h = d.getHours() * 30;
+        var m = d.getMinutes() * deg;
+        var s = d.getSeconds() * deg;
+
+        hr.style.transform = `rotateZ(${(h) + (m/12)}deg)`;
+        mn.style.transform = `rotateZ(${m}deg)`;
+        sc.style.transform = `rotateZ(${s}deg)`;
+    });
+
+  
+</script>
+</html>

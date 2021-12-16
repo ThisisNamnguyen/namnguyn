@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/JS 101 EX4/Digital clock.css">
+</head>
+<script>
+    function timeFormat(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    function clockRun(){
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+
+        document.querySelector('.clock').innerHTML = `${timeFormat(h)}:${timeFormat(m)}:${timeFormat(s)}`;
+        document.querySelector('.input-field').value = `${timeFormat(h)}:${timeFormat(m)}:${timeFormat(s)}`;
+
+        setTimeout(() => {
+            clockRun();
+        }, 500);
+    }
+</script>
+<body onload="clockRun()">
+    <div class="clock"></div>
+    <input type="text" class="input-field" value="">
+</body>
+</html>

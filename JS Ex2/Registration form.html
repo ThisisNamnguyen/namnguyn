@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/JS ex/JS Ex2/registration form.css">
+</head>
+<style>
+
+</style>
+<body>
+  <form action="" method="post" >
+    <div class="form-container">
+      <div class="form-content">
+        <h2>Registration form</h2>
+        <label for="">First name: </label> <input type="text" name="" id="firstname" class="input-form"> <br> 
+        <p class="error-message" id='firstname_error'></p> 
+        <label for="">Last name: </label> <input type="text" name="" id="lastname" class="input-form"> <br>  
+        <p class="error-message" id='lastname_error'></p> 
+        <label for="">Username: </label> <input type="text" name="" id="username" class="input-form"> <br> 
+        <p class="error-message" id='username_error'></p> 
+        <label for="">Email: </label> <input type="text" name="" id="email" class="input-form"> <br> 
+        <p class="error-message" id='email_error'></p> 
+        <label for="">Phone number: </label> <input type="text" name="" id="phone-number" class="input-form"> <br>
+        <p class="error-message" id='phone-number_error'></p> 
+        <p>We are constantly developing new technologies and features to improve our services. 
+          For example, we invest in artificial intelligence – a technology that uses machine learning to detect and prevent spam and malware, and provide you with innovative features like parallel translation. 
+          As part of this continuous improvement process, from time to time, we will add or remove features and functionality, increase or decrease limits on services, and start or discontinue new services. old service.</p> <br>
+        <input type="checkbox" name="check-agree" id="check-box"> I agree to the terms <br>
+        <input type="button" value="Submit" onclick="return validateForm()" id="btn-submit" class="btn" disabled>
+        <input type="reset" value="Reset" id="reset" class="btn">
+      </div>
+    </div>
+  </form>
+  <script>
+    function getValue(id) {
+      return document.getElementById(id).value.trim()
+    }
+  
+    function showError(id, errorMessage) {
+      document.getElementById(id + '_error').innerHTML =  errorMessage;
+    }
+  
+    function hideError(id) {
+      document.getElementById(id + '_error').innerHTML =  '';
+    }
+  
+    function checkStr(a) {
+      var count = 0;
+        for (var i = 0; i < a.length; i++) {         
+          const x = new Number(a[i]);
+            if (isNaN(x)) {
+              count++;
+            }           
+        }
+        return count;   
+    }
+  
+    function checkName(id) {
+      var name = getValue(id);
+  
+      if(name == '') {
+        showError(id, 'Please enter this input field');
+        name.focus;
+      } else {
+        if(checkStr(name) != name.length ) {
+          check = false;
+          showError(id, 'Name only allow A - Z. <br> Please enter name again.')
+          name.focus;
+          checkName(id);
+        } else {
+          hideError(id);
+        }
+      }
+    }
+  
+    function checkUserName() {
+      var userName = getValue('username');
+      const x = new Number(userName[0]);
+  
+      if(userName == '') {
+        showError('username', 'Please enter this input field');
+        userName.focus;
+      } else {
+        if(isNaN(x) == false) {
+          check = false;
+          showError('username', 'Username only contain allowed characters: A-Z, Numeric, -, _, .  , no number prefix are allowed. <br> Please enter username again.');
+          userName.focus;
+          checkUserName();
+        } else {
+          hideError('username');
+        }
+      }    
+    }
+  
+    function checkEmail() {
+      var count = 0;    
+      var email = getValue('email');
+  
+      for(var i = 0; i < email.length; i++) {
+        if(email[i] == "@" || email[i] == ".") {
+          count++;
+        }
+      }
+  
+      if(email == '') {
+        showError('email', 'Please enter this input field');
+        email.focus;
+      } else {
+        if(count != 2) {
+          check = false;
+          showError('email', 'Invalid email format. Please enter email again');
+          email.focus;
+          checkEmail();
+        } else {
+          hideError('email');
+        }
+      }    
+    }
+    
+    function checkPhoneNumber(){
+      var phoneNumber = getValue('phone-number');
+  
+      if(phoneNumber == '') {
+        showError('phone-number', 'Please enter this input field');
+        phoneNumber.focus;
+      } else {
+        if(checkStr(phoneNumber) > 0 || phoneNumber.length != 10 || phoneNumber[0] != 0) {
+          check = false;
+          showError('phone-number', 'Invalid phone number. Please enter phone number again');
+          phoneNumber.focus;
+          checkPhoneNumber();
+        } else {
+          hideError('phone-number');
+        }
+      }    
+    }
+  
+    function validateForm() {
+      var check = true;
+  
+      //First name
+      checkName('firstname');
+  
+      //Last name    
+      checkName('lastname');
+      
+      //Username
+      checkUserName();
+  
+      //Email
+      checkEmail();
+  
+      //Phone number
+      checkPhoneNumber();
+      
+      return check; 
+    }
+  
+    document.getElementById('check-box').onclick = function() {
+      var checkbox = document.getElementsByName('check-agree');
+
+      if (checkbox[0].checked === true){
+        document.getElementById('btn-submit').disabled = false;
+      } else {
+        document.getElementById('btn-submit').disabled = true;
+      }
+    };  
+
+    document.getElementById('reset').onclick = function() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
