@@ -1,0 +1,16 @@
+td {
+    padding-right: 4px;
+    padding-left: 10px;
+    letter-spacing: 2px;
+    border-left: 1px solid #000;
+}
+
+td:nth-last-child(1) {
+    border-right: 1px solid #000;
+}
+
+input {
+    margin-right: 18px;
+    cursor: pointer;
+}
+

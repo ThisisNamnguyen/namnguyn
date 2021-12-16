@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/JS 101 EX1/HTML node traversal.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Class</td>
+                <td>Name</td>
+                <td>Score</td>
+            </tr>
+            <tr>
+                <td>---</td>
+                <td>--------</td>
+                <td>-------</td>
+                <td>-----</td>
+            </tr>
+        </thead>
+        <tbody id="tableDB"></tbody>
+    </table>
+    <input type="button" value="Sort By ID" id="sort-by-ID">
+    <input type="button" value="Sort By Score" id="sort-by-score">
+    <input type="button" value="Highest Score" id="sort-by-highest">
+</body>
+
+<script>
+    var obj = [
+        {
+            
+            ID: 1,
+            Class: "JS 101",
+            Name: "John",
+            Score: 8.1,
+        },
+        {
+            ID: 2,
+            Class: "JS 101",
+            Name: "David",
+            Score: 7.2,
+        },
+        {
+            ID: 3,
+            Class: "HTML 101",
+            Name: "John",
+            Score: 9.2,
+        },
+        {
+            ID: 4,
+            Class: "HTML 101",
+            Name: "David",
+            Score: 9.5,
+        },
+        {
+            ID: 5,
+            Class: "CSS 101",
+            Name: "Charlie",
+            Score: 8.5,
+        },
+        {
+            ID: 6,
+            Class: "CSS 101",
+            Name: "Micheal",
+            Score: 8,
+        },
+    ];
+
+    function exportTb() {
+        var k = '<tbody>';
+        for (var i = 0; i < obj.length; i++) {
+            var x = "|";
+            k+= '<tr class = "color-change-' + obj[i].ID + '">';
+            k+= '<td>' + obj[i].ID + '</td>';
+            k+= '<td>' + obj[i].Class + '</td>';
+            k+= '<td>' + obj[i].Name + '</td>';
+            k+= '<td>' + obj[i].Score + '</td>';
+            k+= '<tr>';
+        }
+        k+= '</tbody>'
+        document.getElementById('tableDB').innerHTML = k;
+    }
+    exportTb();
+    
+    function compareScore(a, b) {
+        const ScoreA = a.Score;
+        const ScoreB = b.Score;
+
+        let comparison = 0;
+        if(ScoreA > ScoreB) {
+            comparison = 1;
+        } else {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
+    function compareID(a, b) {
+        const IDA = a.ID;
+        const IDB = b.ID;
+
+        let comparison = 0;
+        if(IDA > IDB) {
+            comparison = 1;
+        } else {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
+    function Highest() {
+        var n = obj.length - 1;
+        var i = obj[n].ID;
+        var coLorChange = ".color-change-" + i;
+
+        var changes = document.querySelector(coLorChange);
+        changes.style.backgroundColor = "yellow";
+    }
+
+    const sBID = document.getElementById('sort-by-ID');
+    const sBSc = document.getElementById('sort-by-score');
+    const sBHS = document.getElementById('sort-by-highest');
+
+    sBID.addEventListener('click', function(){
+        obj.sort(compareID);
+        exportTb();
+    })
+
+    sBSc.addEventListener('click', function(){
+        obj.sort(compareScore);
+        exportTb();
+    })
+
+    sBHS.addEventListener('click', function(){
+        obj.sort(compareScore);
+        Highest();  
+    })
+</script>
+</html>
